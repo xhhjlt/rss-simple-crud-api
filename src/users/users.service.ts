@@ -1,4 +1,5 @@
 import { IUsersService, User } from "./users.model.ts";
+import { v4 as uuid } from "uuid";
 
 export class UsersService implements IUsersService {
   private data: User[];
@@ -17,7 +18,7 @@ export class UsersService implements IUsersService {
 
   async createUser(user: Omit<User, "id">) {
     const newUser = {
-      id: crypto.randomUUID(),
+      id: uuid(),
       ...user,
     };
     this.data.push(newUser);

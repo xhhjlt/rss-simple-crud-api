@@ -7,10 +7,10 @@ import { sendResponse } from "./lib/sendResponse.ts";
 
 const usersController = new UsersController(new UsersService());
 
-export const server = http.createServer((req, res) => {
+export const server = http.createServer(async (req, res) => {
   try {
     if (req.url?.match(usersControllerPathRegexp)) {
-      usersController.router(req, res);
+      await usersController.router(req, res);
     } else {
       throw404();
     }
